@@ -711,10 +711,9 @@ function! phpcomplete#GetClassLocation(classname) " {{{
 		exe 'silent! vimgrep /^'.a:classname.'.*\tc\(\t\|$\)/j '.fname
 		let qflist = getqflist()
 		" As in GetClassName we can manage only one element if it exists
-		if len(qflist) > 0
+		let classlocation = ''
+        if len(qflist) > 0
 			let classlocation = matchstr(qflist[0]['text'], '\t\zs\f\+\ze\t')
-		else
-			return ''
 		endif
 		" And only one class location
 		if classlocation != ''
@@ -722,8 +721,6 @@ function! phpcomplete#GetClassLocation(classname) " {{{
 				let classlocation = fhead.classlocation
 			endif
 			return classlocation
-		else
-			return ''
 		endif
 	endfor
 
