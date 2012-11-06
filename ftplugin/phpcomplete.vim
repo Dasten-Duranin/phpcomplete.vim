@@ -723,7 +723,7 @@ function! phpcomplete#GetClassLocation(classname) " {{{
 			return classlocation
 		endif
 	endfor
-
+return ''
 endfunction
 " }}}
 
